@@ -1,0 +1,19 @@
+<input [formControl]="searchControl" placeholder="Pesquisar por título">
+<button (click)="filtrarPorTitulo()">Pesquisar</button>
+<button (click)="limparFiltro()">Limpar Filtro</button>
+
+<div *ngIf="dados && dados.length > 0">
+  <div *ngFor="let post of paginatedData" style="margin-bottom: 10px;">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.body }}</p>
+  </div>
+</div>
+
+<div *ngIf="dados && dados.length === 0">
+  Nenhum post encontrado com o título pesquisado.
+</div>
+
+<div *ngIf="!dados">
+  Carregando...
+</div>
+<mat-paginator [length]="dados.length" [pageSize]="4"></mat-paginator>
